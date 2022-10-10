@@ -1,7 +1,7 @@
 package restaurant.model.handler
 
 import restaurant.model.RestaurantTable
-import restaurant.utils.errors.Error.objectNotAvailable
+import restaurant.utils.CustomException.objectNotAvailable
 
 import scala.collection.immutable
 

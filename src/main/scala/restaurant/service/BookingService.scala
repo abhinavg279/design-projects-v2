@@ -1,10 +1,11 @@
 package restaurant.service
 
 import restaurant.model.Slot
-import restaurant.model.handler.{BookingStorageHandler, RestaurantTableStorageHandler, SlotStorageHandler}
+import restaurant.model.handler.{BookingStorageHandler, RestaurantStorageHandler, RestaurantTableStorageHandler, SlotStorageHandler}
 
 object BookingService {
   def getAvailableSlots(restaurantId: Int): Iterable[Slot] = {
+    val _ = RestaurantStorageHandler.getRestaurant(restaurantId)
     val tables = RestaurantTableStorageHandler.getAllTables(restaurantId)
     SlotStorageHandler.getAvailableSlots(tables.toSeq)
   }

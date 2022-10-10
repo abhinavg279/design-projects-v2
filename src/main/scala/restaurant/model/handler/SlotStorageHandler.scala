@@ -2,7 +2,7 @@ package restaurant.model.handler
 
 import org.joda.time.LocalTime
 import restaurant.model.Slot
-import restaurant.utils.errors.Error.{SlotAlreadyBooked, SlotAlreadyReleased, objectNotAvailable}
+import restaurant.utils.CustomException.{SlotAlreadyBooked, SlotAlreadyReleased, objectNotAvailable}
 
 object SlotStorageHandler {
   private var allSlots = Map.empty[Int, Slot]

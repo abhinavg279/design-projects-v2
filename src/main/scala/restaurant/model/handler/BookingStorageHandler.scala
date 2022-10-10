@@ -12,7 +12,7 @@ object BookingStorageHandler {
 
   // PRIVATE METHODS
   private def addOrUpdateBooking(booking: Booking): Int = {
-    allBookings += booking
+    allBookings += ((booking.bookingId, booking))
     booking.bookingId
   }
 

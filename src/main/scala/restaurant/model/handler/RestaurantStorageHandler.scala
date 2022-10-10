@@ -1,7 +1,7 @@
 package restaurant.model.handler
 
 import restaurant.model.Restaurant
-import restaurant.utils.errors.Error.objectNotAvailable
+import restaurant.utils.CustomException.objectNotAvailable
 
 object RestaurantStorageHandler {
   private var allRestaurants = Map.empty[Int, Restaurant]
@@ -10,6 +10,10 @@ object RestaurantStorageHandler {
   def createNewRestaurant(name: String): Int = {
     val restaurant = Restaurant(getRestaurantId, name, Seq.empty[Int])
     addOrUpdateRestaurant(restaurant)
+  }
+
+  def getRestaurant(id: Int): Restaurant = {
+    getRestaurantById(id)
   }
 
   def addTables(restaurantId: Int, tableIds: Seq[Int]): Int = {
