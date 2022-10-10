@@ -1,7 +1,7 @@
-import restaurant_service.models.RestaurantDAO
-import restaurant_service.utils.H2Database
+import restaurant.models.RestaurantDAO
+import restaurant.utils.H2Database
 import com.typesafe.config.ConfigFactory
-import restaurant_service.models.Restaurants
+import restaurant.models.Restaurants
 import slick.basic.DatabaseConfig
 import slick.jdbc.H2Profile.api._
 import slick.jdbc.JdbcProfile
