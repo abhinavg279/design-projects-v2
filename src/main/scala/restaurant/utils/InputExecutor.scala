@@ -5,7 +5,7 @@ import restaurant.utils.CustomException.WithErrorHandling
 
 import scala.language.implicitConversions
 
-object Input {
+object InputExecutor {
   def execute(input: String): Unit = {
     WithErrorHandling {
       val (command, args) = parseInput(input)
