@@ -15,5 +15,6 @@ libraryDependencies ++= Seq(
   "org.slf4j" % "slf4j-nop" % "1.6.4",
   "com.typesafe.slick" %% "slick-hikaricp" % "3.3.3",
   "com.typesafe.akka" %% "akka-stream" % "2.6.14",
-  "joda-time" % "joda-time" % "2.10.10" // https://mvnrepository.com/artifact/joda-time/joda-time
+  "joda-time" % "joda-time" % "2.10.10", // https://mvnrepository.com/artifact/joda-time/joda-time
+  "io.reactivex" %% "rxscala" % "0.27.0 "
 )
