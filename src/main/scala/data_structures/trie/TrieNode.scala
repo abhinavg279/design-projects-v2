@@ -79,6 +79,48 @@ class TrieNode {
     else res
   }
 
+  def collectMax(count: Int): MutableSet[Seq[Char]] = {
+    val paths = nextNodes.toSeq.sortBy(_.count).reverse.foldLeft((MutableSet.empty[Seq[Char]], count)) {
+      case ((res, remaining), node) =>
+        if(remaining > node.count) (res.addAll(node.collectMax(node.count)), remaining - node.count)
+        else if (remaining > 0) (res.addAll(node.collectMax(remaining)), 0)
+        else (res, 0)
+    }._1
+    val res = paths.map((path: Seq[Char]) => value +: path).addAll((1 to isWordEnd).map(_ => Seq(value)))
+    if (res.isEmpty) MutableSet(Seq(value))
+    else res
+  }
+
+  def getTopWords(values: Seq[Char], count: Int): MutableSet[Seq[Char]] = {
+    _getTopWords(values, count).map(t => values ++ t.tail)
+  }
+
+  def _getTopWords(values: Seq[Char], count: Int): MutableSet[Seq[Char]] = {
+    if (values.nonEmpty) {
+      nextNodes.find(_.value == values.head) match {
+        case Some(nextNode) =>
+          if (values.size == 1) nextNode.collectMax(count)
+          else nextNode._getTopWords(values.tail, count)
+        case None => MutableSet.empty[Seq[Char]]
+      }
+    } else MutableSet.empty[Seq[Char]]
+  }
+
+  def getWords(values: Seq[Char]): MutableSet[Seq[Char]] = {
+    _getWords(values).map(t => values ++ t.tail)
+  }
+
+  def _getWords(values: Seq[Char]): MutableSet[Seq[Char]] = {
+    if(values.nonEmpty) {
+      nextNodes.find(_.value == values.head) match {
+        case Some(nextNode) =>
+          if(values.size == 1) nextNode.collectAll()
+          else nextNode._getWords(values.tail)
+        case None => MutableSet.empty[Seq[Char]]
+      }
+    } else MutableSet.empty[Seq[Char]]
+  }
+
   def print(): Unit = {
     println(s"($value, $count, $isWordEnd)")
     nextNodes.foreach(_.print())
