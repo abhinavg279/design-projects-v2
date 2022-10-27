@@ -106,6 +106,10 @@ class TrieNode {
     } else MutableSet.empty[Seq[Char]]
   }
 
+  def getWords2(values: Seq[Char]): MutableSet[Seq[Char]] = {
+    _getTopWords(values, count).map(t => values ++ t.tail)
+  }
+
   def getWords(values: Seq[Char]): MutableSet[Seq[Char]] = {
     _getWords(values).map(t => values ++ t.tail)
   }

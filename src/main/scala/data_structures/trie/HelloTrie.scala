@@ -23,5 +23,6 @@ object HelloTrie extends App {
 //  println(root.collectMax(3))
 
 //  println(root.getWords("abcd"))
-  println(root.getTopWords("abe", 2))
+  // println(root.getTopWords("abe", 2))
+  println(root.getWords("ab"))
 }
